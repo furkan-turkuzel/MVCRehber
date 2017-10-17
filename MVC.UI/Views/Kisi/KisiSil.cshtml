@@ -1,0 +1,42 @@
+﻿@model MVC.UI.Models.KisiModelView
+@{
+    ViewBag.Title = "KisiSil";
+}
+
+<h2>KisiSil</h2>
+<br /><br />
+<p>
+    <h2>Aşağıdaki kişi kaydını silmek istediğinizden emin misiniz?</h2>
+</p>
+<table>
+    <tr>
+        <td><b>Adı:</b></td>
+        <td>@Model.kisiler.Ad</td>
+    </tr>
+    <tr>
+        <td><b>Soyadı:</b></td>
+        <td>@Model.kisiler.Soyad</td>
+    </tr>
+    <tr>
+        <td><b>Yaşı:</b></td>
+        <td>@Model.kisiler.Yas</td>
+    </tr>
+</table>
+<br />
+<form asp-controller="Kisi" asp-action="KisiSil" method="post">
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(x=>x.kisiler.ID)
+    <br />
+    <div class="input-group">
+        <input type="submit" class="btn btn-danger" value="Sil"/>
+    </div>
+    <br />
+    <div class="input-group">
+        @if (ViewBag.Result != null)
+        {
+            <div class="alert alert-@ViewBag.Status">
+                @ViewBag.Result
+            </div>
+        }
+    </div>
+</form>

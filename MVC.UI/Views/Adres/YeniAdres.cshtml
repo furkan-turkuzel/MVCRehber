@@ -1,0 +1,29 @@
+﻿@model MVC.UI.Models.AdresModelView
+@{
+    ViewBag.Title = "YeniAdres";
+}
+
+<h2>YeniAdres</h2>
+<br /><br />
+<form asp-controller="Adres" asp-action="YeniAdres" method="post">
+    @Html.AntiForgeryToken()
+
+    <div class="input-group">
+        <div class="input-group-addon" id="txtAdrestanim">
+            Adres Tanım
+        </div>
+        @Html.TextBoxFor(x => x.adresler.AdresTanim, new { @class="form-control",placeholder="Adres Tanım",aria_describedby= "txtAdrestanim" })
+    </div>
+    <br />
+    <div class="input-group">
+        <div class="input-group-addon" id="ddlKisiler">
+            Kişi
+        </div>
+        @Html.DropDownListFor(x => x.adresler.Kisiler.ID, (List<SelectListItem>)ViewBag.kisiler, new {@class="form-control",aria_describedby= "ddlKisiler" }))
+    </div>
+    <br />
+    <div class="input-group">
+        <input  type="submit" class="btn btn-success" value="Kaydet"/>
+    </div>
+</form>
+

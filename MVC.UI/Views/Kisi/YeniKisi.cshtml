@@ -1,0 +1,42 @@
+﻿@model MVC.UI.Models.KisiModelView
+@{
+    ViewBag.Title = "YeniKisi";
+}
+<br /><br />
+<form asp-controller="Kisi" asp-action="YeniKisi" method="post">
+    @Html.AntiForgeryToken()
+    <div class="input-group">
+        <div class="input-group-addon" id="txtAd" style="width:50px;">
+            Ad
+        </div>
+        @Html.TextBoxFor(x => x.kisiler.Ad, new { @class="form-control",placeholder="Ad",aria_describedby="txtAd"})
+    </div>
+    <br />
+    <div class="input-group">
+        <div class="input-group-addon" id="txtSoyad" style="width:50px;">
+            Soyad
+        </div>
+        @Html.TextBoxFor(x => x.kisiler.Soyad, new { @class = "form-control", placeholder = "Soyad", aria_describedby = "txtSoyad" })
+    </div>
+    <br />
+    <div class="input-group">
+        <div class="input-group-addon" id="txtYas" style="width:50px;">
+            Yaş
+        </div>
+        @Html.TextBoxFor(x => x.kisiler.Yas, new { @class = "form-control", placeholder = "Yaş", aria_describedby = "txtYas" })
+    </div>
+    <br />
+    <div class="input-group">
+        <input type="submit" class="btn btn-success" value="Kaydet"/>
+    </div>
+    <br />
+    <div class="input-group">
+        @if (ViewBag.Result != null)
+        {
+            <div class="alert alert-@ViewBag.Status">
+                @ViewBag.Result
+            </div>
+        }
+    </div>
+</form>
+

@@ -1,0 +1,55 @@
+﻿@model MVC.UI.Models.KisiAdresModelView
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <h2><b>HomaPage</b></h2>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-6">
+        <div>
+            @Html.ActionLink("Yeni Kişi", "YeniKisi", "Kisi", null, new { @class = "btn btn-primary" })
+        </div>
+        <ul class="list-group">
+            <li class="list-group-item active">
+                Kişiler
+            </li>
+            @foreach (var item in Model.Kisiler)
+            {
+                <li class="list-group-item">
+                    @Html.ActionLink("Düzenle", "KisiDuzenle", "Kisi", new { ID = item.ID }, new { @class = "btn btn-warning btn-xs" })
+                    @Html.ActionLink("Sil", "KisiSil", "Kisi", new { ID = item.ID }, new { @class = "btn btn-danger btn-xs" })
+                    <span class="glyphicon glyphicon-user"></span>@(item.Ad + " " + item.Soyad) (<i>@item.Yas</i>)
+                </li>
+            }
+        </ul>
+    </div>
+
+    <div class="col-md-6">
+        <div>
+            @Html.ActionLink("Yeni Adres", "YeniAdres", "Adres", null, new { @class = "btn btn-primary" })
+        </div>
+        <ul class="list-group">
+            <li class="list-group-item active">
+                Adres
+            </li>
+            @foreach (var item1 in Model.Adresler)
+            {
+                <li class="list-group-item">
+                    @Html.ActionLink("Düzenle", "AdresDuzenle", "Adres", new { ID = item1.ID }, new { @class = "btn btn-warning btn-xs" })
+                    @Html.ActionLink("Sil", "AdresSil", "Adres", new { ID = item1.ID }, new { @class = "btn btn-danger btn-xs" })
+                    <span class="glyphicon glyphicon-home"></span> @item1.AdresTanim 
+                    (@(item1.Kisiler.Ad+" "+item1.Kisiler.Soyad))
+                </li>
+            }
+        </ul>
+    </div>
+</div>

@@ -1,0 +1,29 @@
+﻿@model MVC.UI.Models.AdresModelView
+@{
+    ViewBag.Title = "AdresSil";
+}
+
+<h2>AdresSil</h2>
+
+<table>
+    <tr>
+        <td align="right">Adres Tanım : </td>
+        <td>@Model.adresler.AdresTanim</td>
+    </tr>
+    <tr>
+        <td align="right">Kişi : </td>
+        <td>@(Model.adresler.Kisiler.Ad + " " + Model.adresler.Kisiler.Soyad)</td>
+    </tr>
+
+    <br />
+</table>
+    <form asp-controller="Adres" asp-action="AdresSil" method="post">
+        @Html.AntiForgeryToken()
+        @Html.HiddenFor(x=>x.adresler)
+
+        <div class="input-group">
+            <input type="submit" class="btn btn-danger" value="sil"/>
+        </div>
+    </form>
+
+
